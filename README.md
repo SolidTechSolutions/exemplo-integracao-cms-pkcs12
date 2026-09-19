@@ -1,5 +1,11 @@
 # 🇧🇷 SolidSign API - Exemplo de Assinatura CMS PKCS12 (Batch Mode)
 
+## ⚠️ Disponibilidade
+
+Este método (importação de certificado PKCS#12 direto no servidor) só está disponível em instâncias do SolidSign API rodando **on-premises** (localmente, na infraestrutura do próprio cliente). **Não está disponível na versão SaaS pública** do SolidSign.
+
+Motivo: a importação PKCS#12 mantém a chave privada decriptada em cache no servidor por até 2 horas — um risco aceitável numa instância on-premises própria, mas não numa instância SaaS compartilhada entre vários clientes. Se você usa o SaaS público, use `sign-hsm-cloud` (seu próprio PSC) ou a custódia KMS SolidSign em vez deste método.
+
 Este projeto demonstra a integração com a **SolidSign API** para realizar a assinatura digital CAdES (CMS) de múltiplos arquivos em lote, utilizando um certificado PKCS#12 pré-importado. O arquivo `.p7s` resultante pode ser no formato anexado (attached) ou destacado (detached).
 
 ## Estrutura do Projeto
@@ -41,6 +47,12 @@ O sistema intercepta erros **400 Bad Request** e loga o JSON detalhado da SolidS
 ---
 
 # 🇬🇧 SolidSign API - CMS PKCS12 Signature Example (Batch Mode)
+
+## ⚠️ Availability
+
+This method (server-side PKCS#12 certificate import) is only available on **on-premises** SolidSign API instances (running locally, on the customer's own infrastructure). **It is not available on the public SaaS** version of SolidSign.
+
+Why: PKCS#12 import keeps the decrypted private key cached on the server for up to 2 hours — an acceptable risk on your own on-premises instance, but not on a shared multi-tenant SaaS instance. If you use the public SaaS, use `sign-hsm-cloud` (your own PSC) or KMS SolidSign custody instead of this method.
 
 This project demonstrates the integration with the **SolidSign API** to perform CAdES (CMS) digital signatures on multiple files in batch mode, using a pre-imported PKCS#12 certificate. The resulting `.p7s` file can be attached or detached.
 
